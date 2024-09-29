@@ -1,4 +1,4 @@
-# Fetch Challenge
+# 🐶 Fetch Challenge
 
 Codebase for [Fetch's](https://fetch.com/) front-end internship coding exercise.
 
