@@ -6,6 +6,9 @@ export const isFailure = writable<boolean>(false);
 // List of dog breeds fetched from the Dog API
 export const doglist = writable<string[]>([]);
 
+// Dog image URLs fetched from the Dog API
+export const dogImages = writable<string[]>([]);
+
 // Generic persistent store that saves to local storage
 const createLocalStorageStore = <T>(key: string, initialValue: T) => {
     const store = writable<T>(initialValue);

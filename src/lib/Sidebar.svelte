@@ -15,15 +15,17 @@
         class="p-2 h-full flex flex-col items-start
     overflow-y-auto overflow-x-hidden">
         {#each $doglist as dog}
-            <button 
-            on:click={() => {
-                if ($savedDoglist.includes(dog)) {
-                    savedDoglist.update(list => list.filter(d => d !== dog));
-                } else {
-                    savedDoglist.update(list => [...list, dog]);
-                }
-            }}
-            class="
+            <button
+                on:click={async () => {
+                    if ($savedDoglist.includes(dog)) {
+                        savedDoglist.update(list =>
+                            list.filter(d => d !== dog)
+                        );
+                    } else {
+                        savedDoglist.update(list => [...list, dog]);
+                    }
+                }}
+                class="
                 {$savedDoglist.includes(dog) ? 'bg-accent' : 'bg-primary'}
             ">{formatName(dog)}</button>
         {/each}
