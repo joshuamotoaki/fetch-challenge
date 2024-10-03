@@ -12,16 +12,18 @@
     {#if $currentImages.length === 0}
         <h2 class="text-xl font-semibold text-center mt-8">No images found</h2>
         <p class="text-lg text-center">
-            Add a breed in the sidebar to see images here.
+            Add a breed in the sidebar to see images here!
         </p>
     {:else}
         <div style={dispCss} class="p-2 grid gap-2">
             <!-- Flexbox per numCols to make gallery have less whitespace -->
             {#each Array(numCols) as _, i}
                 <div class="flex flex-col gap-2">
-                    {#each $currentImages as dogImage, j}
+                    {#each $currentImages as dogInfo, j}
                         {#if j % numCols === i}
-                            <DogImage {dogImage} dogName="Cat" />
+                            <DogImage
+                                dogImage={dogInfo[0]}
+                                dogName={dogInfo[1]} />
                         {/if}
                     {/each}
                 </div>

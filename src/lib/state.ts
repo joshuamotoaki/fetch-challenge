@@ -12,7 +12,7 @@ export const dogImages = writable<Record<string, string[]>>(
 );
 
 // Currently displayed image URLs
-export const currentImages = writable<string[]>([]);
+export const currentImages = writable<[string, string][]>([]);
 
 // Generic persistent store that saves to local storage
 const createLocalStorageStore = <T>(key: string, initialValue: T) => {

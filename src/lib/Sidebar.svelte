@@ -16,7 +16,7 @@
     };
 
     // Save the dog, fetch images if needed, refresh gallery UI
-    const handleClickedDog = (dog: string) => {
+    const handleClickedDog = async (dog: string) => {
         if ($savedDoglist.includes(dog)) {
             savedDoglist.update(list => list.filter(d => d !== dog));
         } else {
@@ -25,7 +25,7 @@
 
             // Only fetch the images if they haven't been fetched yet
             if (!$dogImages[dog]) {
-                fetch(`https://dog.ceo/api/breed/${apiName}/images`)
+                await fetch(`https://dog.ceo/api/breed/${apiName}/images`)
                     .then(res => res.json())
                     .then(data => {
                         $dogImages[dog] = data.message;
@@ -33,8 +33,22 @@
             }
         }
 
+        // Round robin algorithm to display images in a grid
+        const newImageURLs: [string, string][] = [];
+        let shouldContinue = true;
+        for (let i = 0; shouldContinue; i++) {
+            shouldContinue = false;
+            for (const breed of $savedDoglist) {
+                const potImg = $dogImages[breed][i];
+                if (potImg !== undefined) {
+                    newImageURLs.push([potImg, breed]);
+                    shouldContinue = true;
+                }
+            }
+        }
+
         // Refresh the gallery UI
-        currentImages.set($savedDoglist.flatMap(dog => $dogImages[dog]));
+        currentImages.set(newImageURLs);
     };
 </script>
 
