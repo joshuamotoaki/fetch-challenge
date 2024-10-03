@@ -6,9 +6,13 @@ import { breedCache, currentImages, savedDoglist } from "./state";
  * @param breed The breed to cache
  */
 export const cacheBreed = async (breed: string) => {
+    const NUM_IMAGES_PER_BREED = 15;
+
     if (!get(breedCache)[breed]) {
         const apiName = breed.split(" ").reverse().join("/");
-        await fetch(`https://dog.ceo/api/breed/${apiName}/images/random/20`)
+        await fetch(
+            `https://dog.ceo/api/breed/${apiName}/images/random/${NUM_IMAGES_PER_BREED}`
+        )
             .then(res => res.json())
             .then(data => {
                 get(breedCache)[breed] = data.message;
