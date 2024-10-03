@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { doglist, savedDoglist } from "./state";
+    import { dogImages, doglist, savedDoglist } from "./state";
 
     // Filter the dog list based on the search input
     let searchInput: string = "";
@@ -15,6 +15,7 @@
             .join(" ");
     };
 
+    // Save the dog, fetch images if needed, refresh gallery UI
     const handleClickedDog = (dog: string) => {
         if ($savedDoglist.includes(dog)) {
             savedDoglist.update(list => list.filter(d => d !== dog));
@@ -22,12 +23,17 @@
             savedDoglist.update(list => [...list, dog]);
             const apiName = dog.split(" ").reverse().join("/");
 
-            fetch(`https://dog.ceo/api/breed/${apiName}/images`)
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                });
+            // Only fetch the images if they haven't been fetched yet
+            if (!$dogImages[dog]) {
+                fetch(`https://dog.ceo/api/breed/${apiName}/images`)
+                    .then(res => res.json())
+                    .then(data => {
+                        $dogImages[dog] = data.message;
+                    });
+            }
         }
+
+        // Refresh the gallery UI
     };
 </script>
 
@@ -51,8 +57,8 @@ p-2 gap-2">
                 on:click={() => handleClickedDog(dog)}
                 class="w-full text-left rounded-md p-1 my-[1px] duration-100
                 {$savedDoglist.includes(dog)
-                    ? 'bg-accent'
-                    : 'hover:bg-green-100'}
+                    ? 'bg-primary'
+                    : 'hover:bg-purple-100'}
             ">{formatName(dog)}</button>
         {/each}
     </ul>
