@@ -3,6 +3,8 @@
     import Navbar from "./lib/Navbar.svelte";
     import { doglist, isFailure } from "./lib/state";
     import Failure from "./lib/Failure.svelte";
+    import Sidebar from "./lib/Sidebar.svelte";
+    import Gallery from "./lib/Gallery.svelte";
 
     type RawDogList = {
         message: {
@@ -39,18 +41,29 @@
     });
 </script>
 
-{#if isFailure}
+{#if $isFailure}
     <Failure />
 {:else}
-    <Navbar />
-    {#if $doglist.length > 0}
-        <button class="btn btn-primary"> Hi there! </button>
-    {:else}
-        <div class="flex flex-col items-center justify-center mt-12">
-            <div>
-                <span class="loading loading-dots loading-lg"></span>
-            </div>
-            <h2 class="text-2xl font-semibold">Loading dogs</h2>
+    <div class="w-screen h-screen overflow-hidden flex flex-col">
+        <div class="p-2 pb-0">
+            <Navbar />
         </div>
-    {/if}
+        {#if $doglist.length > 0}
+            <div class="flex flex-1">
+                <div class="p-2 pr-0">
+                    <Sidebar />
+                </div>
+                <div class="p-2 flex-1">
+                    <Gallery />
+                </div>
+            </div>
+        {:else}
+            <div class="flex flex-col items-center justify-center mt-12">
+                <div>
+                    <span class="loading loading-dots loading-lg"></span>
+                </div>
+                <h2 class="text-2xl font-semibold">Loading dogs</h2>
+            </div>
+        {/if}
+    </div>
 {/if}
