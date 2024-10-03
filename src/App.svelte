@@ -37,3 +37,10 @@
 </script>
 
 <Navbar />
+{#if $doglist.length > 0}
+    <button class="btn btn-primary">
+        Hi there!
+    </button>
+{:else}
+    <p>Loading...</p>
+{/if}
