@@ -44,13 +44,13 @@
 {#if $isFailure}
     <Failure />
 {:else}
-    <div class="w-screen h-screen overflow-hidden flex flex-col">
+    <div class="w-screen h-screen overflow-hidden flex flex-col bg-base-100">
         <div class="p-2 pb-0">
             <Navbar />
         </div>
         {#if $doglist.length > 0}
-            <div class="flex flex-1">
-                <div class="p-2 pr-0">
+            <div class="flex flex-1 overflow-hidden">
+                <div class="p-2 pr-0 overflow-hidden">
                     <Sidebar />
                 </div>
                 <div class="p-2 flex-1">
