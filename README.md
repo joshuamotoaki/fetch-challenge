@@ -2,6 +2,10 @@
 
 Codebase for [Fetch's](https://fetch.com/) front-end internship coding exercise.
 
+<div align="center">
+    <img src="public/barkchives-screenshot.png" width="80%" alt="App screenshot">
+</div>
+
 ## Setup
 
 1. Clone the repository.
