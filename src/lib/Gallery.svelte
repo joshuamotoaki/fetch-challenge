@@ -7,7 +7,8 @@
 </script>
 
 <main
-    class="flex-1 shadow-xl border rounded-lg h-full bg-white overflow-y-scroll">
+    id="gallery"
+    class="flex-1 shadow-xl border rounded-lg h-full bg-white overflow-y-auto">
     <div style={dispCss} class="p-2 grid gap-2">
         <!-- Flexbox per numCols to make gallery have less whitespace -->
         {#each Array(numCols) as _, i}

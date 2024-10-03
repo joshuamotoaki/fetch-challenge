@@ -14,7 +14,9 @@
         </span>
 
         <div class="flex items-center gap-1">
-            <div class="tooltip tooltip-bottom" data-tip={`Google "${dogName}"`}>
+            <div
+                class="tooltip tooltip-bottom"
+                data-tip={`Google "${dogName}"`}>
                 <a
                     href={`https://www.google.com/search?q=${dogName}`}
                     target="_blank"
@@ -24,10 +26,7 @@
                 </a>
             </div>
             <div class="tooltip tooltip-bottom" data-tip="Download image">
-                <a
-                    class="text-xs"
-                    href={dogImage}
-                    >   
+                <a class="text-xs" href={dogImage}>
                     <DownloadIcon />
                 </a>
             </div>

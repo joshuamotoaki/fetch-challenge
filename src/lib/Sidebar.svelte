@@ -41,7 +41,19 @@
 <aside
     class="h-full bg-white shadow-xl border w-fit rounded-lg flex flex-col
 p-2 gap-2">
-    <h2 class="text-xl font-semibold p-1">🐶 The Barkchives</h2>
+    <button
+        on:click={() => {
+            // Set scroll position of id="gallery" to 0 smoothly
+            const galleryElem = document.getElementById("gallery");
+            if (galleryElem) {
+                galleryElem.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+        }}>
+        <h2 class="text-xl font-semibold p-1">🐶 The Barkchives</h2>
+    </button>
 
     <div>
         <input
