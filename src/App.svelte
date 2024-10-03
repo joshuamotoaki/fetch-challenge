@@ -49,7 +49,7 @@
 {#if $isFailure}
     <Failure />
 {:else}
-    <div class="w-screen h-screen overflow-hidden flex flex-col bg-base-300">
+    <div class="w-screen h-screen overflow-hidden flex flex-col bg-slate-200">
         {#if $doglist.length > 0}
             <div class="flex flex-1 overflow-hidden">
                 <div class="p-2 pr-0 overflow-hidden">

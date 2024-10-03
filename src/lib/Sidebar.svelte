@@ -19,10 +19,7 @@
 <aside
     class="h-full bg-white shadow-xl border w-fit rounded-lg flex flex-col
 p-2 gap-2">
-
-    <h2 class="text-xl font-semibold p-1">
-        🐶 The Barkchives
-    </h2>
+    <h2 class="text-xl font-semibold p-1">🐶 The Barkchives</h2>
 
     <div>
         <input
