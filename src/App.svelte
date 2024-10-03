@@ -21,7 +21,9 @@
         }
 
         const newDogList: string[] = [];
-        for (const [breed, subBreeds] of Object.entries(rawDoglistJson.message)) {
+        for (const [breed, subBreeds] of Object.entries(
+            rawDoglistJson.message
+        )) {
             if (subBreeds.length > 0) {
                 subBreeds.forEach((subBreed: string) => {
                     newDogList.push(`${breed} ${subBreed}`);
@@ -38,9 +40,12 @@
 
 <Navbar />
 {#if $doglist.length > 0}
-    <button class="btn btn-primary">
-        Hi there!
-    </button>
+    <button class="btn btn-primary"> Hi there! </button>
 {:else}
-    <p>Loading...</p>
+    <div class="flex flex-col items-center justify-center mt-12">
+        <div>
+            <span class="loading loading-dots loading-lg"></span>
+        </div>
+        <h2 class="text-2xl font-semibold">Loading dogs</h2>
+    </div>
 {/if}
