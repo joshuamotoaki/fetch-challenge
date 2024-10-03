@@ -1,6 +1,12 @@
 <script lang="ts">
     import { doglist, savedDoglist } from "./state";
 
+    // Filter the dog list based on the search input
+    let searchInput: string = "";
+    $: filteredDoglist = $doglist.filter(dog =>
+        dog.includes(searchInput.toLowerCase())
+    );
+
     // Capitalize the first letter of each word in a string
     const formatName = (name: string) => {
         return name
@@ -15,6 +21,7 @@
 p-2 gap-2">
     <div>
         <input
+            bind:value={searchInput}
             type="text"
             placeholder="Search"
             class="input input-bordered input-sm w-full input-primary" />
@@ -22,7 +29,7 @@ p-2 gap-2">
     <ul
         class="h-full flex flex-col items-start
     overflow-y-auto overflow-x-hidden text-sm">
-        {#each $doglist as dog}
+        {#each filteredDoglist as dog}
             <button
                 on:click={async () => {
                     if ($savedDoglist.includes(dog)) {
