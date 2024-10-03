@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import Navbar from "./lib/Navbar.svelte";
-    import { doglist, isFailure } from "./lib/state";
+    import { doglist, isFailure, savedDoglist } from "./lib/state";
     import Failure from "./lib/Failure.svelte";
     import Sidebar from "./lib/Sidebar.svelte";
     import Gallery from "./lib/Gallery.svelte";
@@ -34,6 +34,12 @@
             } else {
                 newDogList.push(breed);
             }
+        }
+
+        // Fetch saved dogs from local storage
+        const savedDogs = localStorage.getItem("doglist");
+        if (savedDogs) {
+            savedDoglist.set(JSON.parse(savedDogs));
         }
 
         // Set the store in order to initialize the app

@@ -27,4 +27,4 @@ const createLocalStorageStore = <T>(key: string, initialValue: T) => {
 };
 
 // List of dog breeds saved to local storage
-const savedDoglist = createLocalStorageStore<string[]>("doglist", []);
+export const savedDoglist = createLocalStorageStore<string[]>("doglist", []);
