@@ -9,12 +9,12 @@
 <main
     class="flex-1 shadow-xl border rounded-lg h-full bg-white overflow-y-scroll">
     <div style={dispCss} class="p-2 grid gap-2">
-        <!-- Flexbox per numCols -->
+        <!-- Flexbox per numCols to make gallery have less whitespace -->
         {#each Array(numCols) as _, i}
             <div class="flex flex-col gap-2">
                 {#each $currentImages as dogImage, j}
                     {#if j % numCols === i}
-                        <DogImage {dogImage} />
+                        <DogImage {dogImage} dogName="Cat" />
                     {/if}
                 {/each}
             </div>
