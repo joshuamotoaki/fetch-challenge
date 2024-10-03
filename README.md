@@ -1,4 +1,4 @@
-# 🐶 Fetch Challenge
+# 🐶 The Barkchives
 
 Codebase for [Fetch's](https://fetch.com/) front-end internship coding exercise.
 
@@ -10,7 +10,7 @@ Codebase for [Fetch's](https://fetch.com/) front-end internship coding exercise.
 
 ## Overview
 
-Filler text.
+The Barkchives is a simple web app where you can view a gallery of your favorite dog breeds! Simply click on the breeds you want to see, and the gallery will automatically update with images of the selected breeds. You can also search for a specific breed using the search bar. In the gallery, you can hover over an image to see the breed name, easily search the breed on Google, or download the image.
 
 ## Technologies
 
