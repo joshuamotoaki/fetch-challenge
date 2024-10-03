@@ -55,7 +55,7 @@
                 <div class="p-2 pr-0 overflow-hidden">
                     <Sidebar />
                 </div>
-                <div class="p-2 flex-1">
+                <div class="p-2 flex-1 overflow-hidden">
                     <Gallery />
                 </div>
             </div>

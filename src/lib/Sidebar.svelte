@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { dogImages, doglist, savedDoglist } from "./state";
+    import { currentImages, dogImages, doglist, savedDoglist } from "./state";
 
     // Filter the dog list based on the search input
     let searchInput: string = "";
@@ -34,6 +34,7 @@
         }
 
         // Refresh the gallery UI
+        currentImages.set($savedDoglist.flatMap(dog => $dogImages[dog]));
     };
 </script>
 
