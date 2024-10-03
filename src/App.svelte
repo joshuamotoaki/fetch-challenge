@@ -63,12 +63,12 @@
     <div class="w-screen h-screen overflow-hidden flex flex-col bg-purple-100">
         {#if $doglist.length > 0}
             <div class="flex flex-1 overflow-hidden">
-                <div class="p-2 pr-0 overflow-hidden">
+                <section class="p-2 pr-0 overflow-hidden">
                     <Sidebar />
-                </div>
-                <div class="p-2 flex-1 overflow-hidden">
+                </section>
+                <section class="p-2 flex-1 overflow-hidden">
                     <Gallery />
-                </div>
+                </section>
             </div>
         {:else}
             <div class="flex flex-col items-center justify-center mt-12">
