@@ -63,7 +63,10 @@ p-2 gap-2">
         {/each}
     </div>
     <button
-        on:click={() => savedDoglist.set([])}
+        on:click={() => {
+            savedDoglist.set([]);
+            refreshGallery();
+        }}
         class="btn btn-sm btn-primary w-full">
         Reset
     </button>
