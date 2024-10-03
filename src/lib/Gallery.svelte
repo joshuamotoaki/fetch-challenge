@@ -2,7 +2,7 @@
     import { dogImages } from "./state";
 </script>
 
-<main class="flex-1 bg-neutral rounded-lg h-full">
+<main class="flex-1 shadow-xl border rounded-lg h-full bg-white">
     <div class="p-2 grid grid-cols-3 gap-2">
         {#each $dogImages as dogImage}
             <img

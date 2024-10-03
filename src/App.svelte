@@ -1,6 +1,5 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import Navbar from "./lib/Navbar.svelte";
     import { doglist, isFailure, savedDoglist } from "./lib/state";
     import Failure from "./lib/Failure.svelte";
     import Sidebar from "./lib/Sidebar.svelte";
@@ -50,10 +49,7 @@
 {#if $isFailure}
     <Failure />
 {:else}
-    <div class="w-screen h-screen overflow-hidden flex flex-col bg-base-100">
-        <div class="p-2 pb-0">
-            <Navbar />
-        </div>
+    <div class="w-screen h-screen overflow-hidden flex flex-col bg-base-300">
         {#if $doglist.length > 0}
             <div class="flex flex-1 overflow-hidden">
                 <div class="p-2 pr-0 overflow-hidden">
