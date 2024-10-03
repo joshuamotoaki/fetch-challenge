@@ -14,7 +14,7 @@ Filler text.
 
 ## Technologies
 
-The project is a Svelte single-page application using Vite. TailwindCSS is utilized for styling, though there are some custom styles (in [app.css](./src/app.css)) to help maintain consistency. The project is formatted with Prettier.
+The project is a Svelte single-page application using Vite. TailwindCSS and DaisyUI are utilized for styling. The project is formatted with Prettier.
 
 ## License
 

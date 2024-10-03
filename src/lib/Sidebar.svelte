@@ -43,7 +43,9 @@ p-2 gap-2">
                     }
                 }}
                 class="w-full text-left rounded-md p-1 my-[1px] duration-100
-                {$savedDoglist.includes(dog) ? 'bg-accent' : 'hover:bg-green-100'}
+                {$savedDoglist.includes(dog)
+                    ? 'bg-accent'
+                    : 'hover:bg-green-100'}
             ">{formatName(dog)}</button>
         {/each}
     </ul>
