@@ -1,5 +1,5 @@
 <script>
-    import { currentImages } from "./state";
+    import { currentImages } from "../scripts/state";
     import DogImage from "./DogImage.svelte";
 
     let numCols = 3;

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { currentImages, dogImages, doglist, savedDoglist } from "./state";
+    import { currentImages, dogImages, doglist, savedDoglist } from "../scripts/state";
 
     // Filter the dog list based on the search input
     let searchInput: string = "";
@@ -25,7 +25,7 @@
 
             // Only fetch the images if they haven't been fetched yet
             if (!$dogImages[dog]) {
-                await fetch(`https://dog.ceo/api/breed/${apiName}/images`)
+                await fetch(`https://dog.ceo/api/breed/${apiName}/images/random/20`)
                     .then(res => res.json())
                     .then(data => {
                         $dogImages[dog] = data.message;

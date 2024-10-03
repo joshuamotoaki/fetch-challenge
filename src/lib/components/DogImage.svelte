@@ -1,6 +1,6 @@
 <script lang="ts">
-    import DownloadIcon from "./icons/DownloadIcon.svelte";
-    import WebIcon from "./icons/WebIcon.svelte";
+    import DownloadIcon from "../icons/DownloadIcon.svelte";
+    import WebIcon from "../icons/WebIcon.svelte";
 
     export let dogImage: string;
     export let dogName: string;
