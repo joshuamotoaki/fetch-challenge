@@ -1,15 +1,23 @@
 <script>
     import { currentImages } from "./state";
     import DogImage from "./DogImage.svelte";
+
+    let numCols = 3;
+    $: dispCss = `grid-template-columns: repeat(${numCols}, 1fr)`;
 </script>
 
 <main
     class="flex-1 shadow-xl border rounded-lg h-full bg-white overflow-y-scroll">
-    <div class="p-2 grid grid-cols-4 gap-2">
-        {#each $currentImages as dogImage}
-            <DogImage {dogImage} />
-        {:else}
-            <p>No images found</p>
+    <div style={dispCss} class="p-2 grid gap-2">
+        <!-- Flexbox per numCols -->
+        {#each Array(numCols) as _, i}
+            <div class="flex flex-col gap-2">
+                {#each $currentImages as dogImage, j}
+                    {#if j % numCols === i}
+                        <DogImage {dogImage} />
+                    {/if}
+                {/each}
+            </div>
         {/each}
     </div>
 </main>
