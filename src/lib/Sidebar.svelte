@@ -10,10 +10,18 @@
     };
 </script>
 
-<aside class="h-full bg-primary w-fit rounded-lg">
+<aside
+    class="h-full bg-white shadow-xl border w-fit rounded-lg flex flex-col
+p-2 gap-2">
+    <div>
+        <input
+            type="text"
+            placeholder="Search"
+            class="input input-bordered input-sm w-full input-primary" />
+    </div>
     <ul
-        class="p-2 h-full flex flex-col items-start
-    overflow-y-auto overflow-x-hidden">
+        class="h-full flex flex-col items-start
+    overflow-y-auto overflow-x-hidden text-sm">
         {#each $doglist as dog}
             <button
                 on:click={async () => {
@@ -25,9 +33,14 @@
                         savedDoglist.update(list => [...list, dog]);
                     }
                 }}
-                class="
-                {$savedDoglist.includes(dog) ? 'bg-accent' : 'bg-primary'}
+                class="w-full text-left rounded-md p-1 my-[1px] duration-100
+                {$savedDoglist.includes(dog) ? 'bg-accent' : ''}
             ">{formatName(dog)}</button>
         {/each}
     </ul>
+    <button
+        on:click={() => savedDoglist.set([])}
+        class="btn btn-sm btn-primary w-full">
+        Reset
+    </button>
 </aside>
