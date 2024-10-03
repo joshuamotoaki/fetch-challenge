@@ -1,8 +1,33 @@
 <script>
     import { currentImages } from "../scripts/state";
     import DogImage from "./DogImage.svelte";
+    import { onMount } from "svelte";
 
+    // Adjust the number of columns based on the window width
     let numCols = 3;
+    const updateNumCols = () => {
+        const screenWidth = window.innerWidth;
+        if (screenWidth >= 1400) {
+            numCols = 6;
+        } else if (screenWidth >= 1200) {
+            numCols = 5;
+        } else if (screenWidth >= 992) {
+            numCols = 4;
+        } else if (screenWidth >= 768) {
+            numCols = 3;
+        } else if (screenWidth >= 576) {
+            numCols = 2;
+        } else {
+            numCols = 1;
+        }
+    };
+
+    onMount(() => {
+        updateNumCols();
+        window.addEventListener("resize", updateNumCols);
+        return () => window.removeEventListener("resize", updateNumCols);
+    });
+
     $: dispCss = `grid-template-columns: repeat(${numCols}, 1fr)`;
 </script>
 
