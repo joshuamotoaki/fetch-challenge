@@ -29,7 +29,7 @@
         )) {
             if (subBreeds.length > 0) {
                 subBreeds.forEach((subBreed: string) => {
-                    newDogList.push(`${breed} ${subBreed}`);
+                    newDogList.push(`${subBreed} ${breed}`);
                 });
             } else {
                 newDogList.push(breed);
