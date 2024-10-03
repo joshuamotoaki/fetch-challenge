@@ -14,6 +14,21 @@
             .map(word => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
     };
+
+    const handleClickedDog = (dog: string) => {
+        if ($savedDoglist.includes(dog)) {
+            savedDoglist.update(list => list.filter(d => d !== dog));
+        } else {
+            savedDoglist.update(list => [...list, dog]);
+            const apiName = dog.split(" ").reverse().join("/");
+
+            fetch(`https://dog.ceo/api/breed/${apiName}/images`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                });
+        }
+    };
 </script>
 
 <aside
@@ -33,15 +48,7 @@ p-2 gap-2">
     overflow-y-auto overflow-x-hidden text-sm">
         {#each filteredDoglist as dog}
             <button
-                on:click={async () => {
-                    if ($savedDoglist.includes(dog)) {
-                        savedDoglist.update(list =>
-                            list.filter(d => d !== dog)
-                        );
-                    } else {
-                        savedDoglist.update(list => [...list, dog]);
-                    }
-                }}
+                on:click={() => handleClickedDog(dog)}
                 class="w-full text-left rounded-md p-1 my-[1px] duration-100
                 {$savedDoglist.includes(dog)
                     ? 'bg-accent'
