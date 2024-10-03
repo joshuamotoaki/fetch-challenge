@@ -1,5 +1,9 @@
 <script lang="ts">
-    import { cacheBreed, refreshGallery } from "../scripts/helpers";
+    import {
+        cacheBreed,
+        formatBreedName,
+        refreshGallery
+    } from "../scripts/helpers";
     import { doglist, savedDoglist } from "../scripts/state";
 
     // Filter the dog list based on the search input
@@ -7,14 +11,6 @@
     $: filteredDoglist = $doglist.filter(dog =>
         dog.includes(searchInput.toLowerCase())
     );
-
-    // Capitalize the first letter of each word in a string
-    const formatName = (name: string) => {
-        return name
-            .split(" ")
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(" ");
-    };
 
     // Save the dog, fetch images if needed, refresh gallery UI
     const handleClickedDog = async (dog: string) => {
@@ -63,7 +59,7 @@ p-2 gap-2">
                 {$savedDoglist.includes(dog)
                     ? 'bg-primary'
                     : 'hover:bg-purple-100'}
-            ">{formatName(dog)}</button>
+            ">{formatBreedName(dog)}</button>
         {/each}
     </ul>
     <button

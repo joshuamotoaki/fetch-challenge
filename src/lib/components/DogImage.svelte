@@ -1,6 +1,7 @@
 <script lang="ts">
     import DownloadIcon from "../icons/DownloadIcon.svelte";
     import WebIcon from "../icons/WebIcon.svelte";
+    import { formatBreedName } from "../scripts/helpers";
 
     export let dogImage: string;
     export let dogName: string;
@@ -10,7 +11,7 @@
     <img src={dogImage} alt={dogName} />
     <div class="overlay flex flex-col">
         <span class="text-xl font-semibold mb-2">
-            {dogName}
+            {formatBreedName(dogName)}
         </span>
 
         <div class="flex items-center gap-1">

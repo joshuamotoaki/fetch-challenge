@@ -2,6 +2,18 @@ import { get } from "svelte/store";
 import { breedCache, currentImages, savedDoglist } from "./state";
 
 /**
+ * Formats a breed name to be more human-readable
+ * @param breed The breed to format 
+ * @returns The formatted breed name
+ */
+export const formatBreedName = (breed: string) => {
+    return breed
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+};
+
+/**
  * Fetches URLs of images of a given breed from the Dog API and caches them
  * @param breed The breed to cache
  */
