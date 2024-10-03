@@ -49,7 +49,7 @@ p-2 gap-2">
             placeholder="Search"
             class="input input-bordered input-sm w-full input-primary" />
     </div>
-    <ul
+    <div
         class="h-full flex flex-col items-start
     overflow-y-auto overflow-x-hidden text-sm">
         {#each filteredDoglist as dog}
@@ -61,7 +61,7 @@ p-2 gap-2">
                     : 'hover:bg-purple-100'}
             ">{formatBreedName(dog)}</button>
         {/each}
-    </ul>
+    </div>
     <button
         on:click={() => savedDoglist.set([])}
         class="btn btn-sm btn-primary w-full">
