@@ -7,7 +7,7 @@ export const isFailure = writable<boolean>(false);
 export const doglist = writable<string[]>([]);
 
 // Map of dog breeds to their image URLs fetched from the Dog API
-export const dogImages = writable<Record<string, string[]>>(
+export const breedCache = writable<Record<string, string[]>>(
     Object.create(null)
 );
 

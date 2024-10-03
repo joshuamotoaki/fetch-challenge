@@ -1,9 +1,10 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { currentImages, dogImages, doglist, isFailure, savedDoglist } from "./lib/scripts/state";
     import Failure from "./lib/components/Failure.svelte";
-    import Sidebar from "./lib/components/Sidebar.svelte";
     import Gallery from "./lib/components/Gallery.svelte";
+    import Sidebar from "./lib/components/Sidebar.svelte";
+    import { cacheBreed, refreshGallery } from "./lib/scripts/helpers";
+    import { doglist, isFailure, savedDoglist } from "./lib/scripts/state";
 
     type RawDogList = {
         message: {
@@ -43,32 +44,12 @@
 
         // Add images to the URL cache if they exist
         for (const breed of $savedDoglist) {
-            if ($dogImages[breed] === undefined) {
-                const apiName = breed.split(" ").reverse().join("/");
-                await fetch(`https://dog.ceo/api/breed/${apiName}/images/random/20`)
-                    .then(res => res.json())
-                    .then(data => {
-                        $dogImages[breed] = data.message;
-                    });
-            }
+            await cacheBreed(breed);
         }
 
         // Add images to the gallery if there are saved dogs
         if ($savedDoglist.length > 0) {
-            const newImageURLs: [string, string][] = [];
-            let shouldContinue = true;
-            for (let i = 0; shouldContinue; i++) {
-                shouldContinue = false;
-                for (const breed of $savedDoglist) {
-                    const potImg = $dogImages[breed][i];
-                    if (potImg !== undefined) {
-                        newImageURLs.push([potImg, breed]);
-                        shouldContinue = true;
-                    }
-                }
-            }
-
-            currentImages.set(newImageURLs);
+            refreshGallery();
         }
 
         // Set the store in order to initialize the app

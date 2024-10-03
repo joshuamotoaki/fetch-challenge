@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { currentImages, dogImages, doglist, savedDoglist } from "../scripts/state";
+    import { cacheBreed, refreshGallery } from "../scripts/helpers";
+    import { doglist, savedDoglist } from "../scripts/state";
 
     // Filter the dog list based on the search input
     let searchInput: string = "";
@@ -21,34 +22,10 @@
             savedDoglist.update(list => list.filter(d => d !== dog));
         } else {
             savedDoglist.update(list => [...list, dog]);
-            const apiName = dog.split(" ").reverse().join("/");
-
-            // Only fetch the images if they haven't been fetched yet
-            if (!$dogImages[dog]) {
-                await fetch(`https://dog.ceo/api/breed/${apiName}/images/random/20`)
-                    .then(res => res.json())
-                    .then(data => {
-                        $dogImages[dog] = data.message;
-                    });
-            }
+            await cacheBreed(dog);
         }
 
-        // Round robin algorithm to display images in a grid
-        const newImageURLs: [string, string][] = [];
-        let shouldContinue = true;
-        for (let i = 0; shouldContinue; i++) {
-            shouldContinue = false;
-            for (const breed of $savedDoglist) {
-                const potImg = $dogImages[breed][i];
-                if (potImg !== undefined) {
-                    newImageURLs.push([potImg, breed]);
-                    shouldContinue = true;
-                }
-            }
-        }
-
-        // Refresh the gallery UI
-        currentImages.set(newImageURLs);
+        refreshGallery();
     };
 </script>
 
