@@ -1,4 +1,5 @@
 <script lang="ts">
+    import DownloadIcon from "./icons/DownloadIcon.svelte";
     import WebIcon from "./icons/WebIcon.svelte";
 
     export let dogImage: string;
@@ -8,16 +9,29 @@
 <div class="image-container shadow-md">
     <img src={dogImage} alt={dogName} />
     <div class="overlay flex flex-col">
-        <span class="text-lg font-semibold">
+        <span class="text-xl font-semibold mb-2">
             {dogName}
         </span>
-        <a
-            href={`https://www.google.com/search?q=${dogName}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-xs">
-            <WebIcon />
-        </a>
+
+        <div class="flex items-center gap-1">
+            <div class="tooltip tooltip-bottom" data-tip={`Google "${dogName}"`}>
+                <a
+                    href={`https://www.google.com/search?q=${dogName}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs">
+                    <WebIcon />
+                </a>
+            </div>
+            <div class="tooltip tooltip-bottom" data-tip="Download image">
+                <a
+                    class="text-xs"
+                    href={dogImage}
+                    >   
+                    <DownloadIcon />
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 
