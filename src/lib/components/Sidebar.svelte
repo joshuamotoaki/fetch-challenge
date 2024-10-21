@@ -28,7 +28,7 @@
 <aside
     class="h-full bg-white shadow-xl border w-fit rounded-lg flex flex-col
 p-2 gap-2">
-    <button
+    <button class="w-20 sm:w-fit"
         on:click={() => {
             // Set scroll position of id="gallery" to 0 smoothly
             const galleryElem = document.getElementById("gallery");
@@ -39,7 +39,7 @@ p-2 gap-2">
                 });
             }
         }}>
-        <h2 class="text-xl font-semibold p-1">🐶 The Barkchives</h2>
+        <h2 class="text-base sm:text-xl font-semibold p-1">🐶 The Barkchives</h2>
     </button>
 
     <div>
@@ -47,15 +47,15 @@ p-2 gap-2">
             bind:value={searchInput}
             type="text"
             placeholder="Search"
-            class="input input-bordered input-sm w-full input-primary" />
+            class="input input-bordered input-sm w-20 sm:w-fit input-primary" />
     </div>
     <div
         class="h-full flex flex-col items-start
-    overflow-y-auto overflow-x-hidden text-sm">
+    overflow-y-auto overflow-x-hidden text-xs sm:text-sm">
         {#each filteredDoglist as dog}
             <button
                 on:click={() => handleClickedDog(dog)}
-                class="w-full text-left rounded-md p-1 my-[1px] duration-100
+                class="w-20 sm:w-full text-left rounded-md p-1 my-[1px] duration-100 
                 {$savedDoglist.includes(dog)
                     ? 'bg-primary'
                     : 'hover:bg-purple-100'}
@@ -67,7 +67,7 @@ p-2 gap-2">
             savedDoglist.set([]);
             refreshGallery();
         }}
-        class="btn btn-sm btn-primary w-full">
+        class="btn btn-sm btn-primary w-20 sm:w-full">
         Reset
     </button>
 </aside>

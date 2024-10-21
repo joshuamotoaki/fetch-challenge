@@ -10,7 +10,7 @@
 <div class="image-container shadow-md">
     <img src={dogImage} alt={dogName} />
     <div class="overlay flex flex-col">
-        <span class="text-xl font-semibold mb-2">
+        <span class="text-sm sm:text-lg md:text-xl text-center font-semibold mb-2">
             {formatBreedName(dogName)}
         </span>
 
