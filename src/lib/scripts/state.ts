@@ -1,5 +1,7 @@
 import { get, writable } from "svelte/store";
 
+export const isFailToastOpen = writable<string | null>(null);
+
 // Sets to true if the app encounters an error (shows <Failure /> component)
 export const isFailure = writable<boolean>(false);
 

@@ -1,5 +1,5 @@
 import { get } from "svelte/store";
-import { breedCache, currentImages, savedDoglist } from "./state";
+import { breedCache, currentImages, savedDoglist, isFailToastOpen } from "./state";
 
 /**
  * Formats a breed name to be more human-readable
@@ -22,13 +22,23 @@ export const cacheBreed = async (breed: string) => {
 
     if (!get(breedCache)[breed]) {
         const apiName = breed.split(" ").reverse().join("/");
-        await fetch(
-            `https://dog.ceo/api/breed/${apiName}/images/random/${NUM_IMAGES_PER_BREED}`
-        )
-            .then(res => res.json())
-            .then(data => {
-                get(breedCache)[breed] = data.message;
-            });
+
+        try {
+            await fetch(
+                `https://dog.ceo/api/breed/${apiName}/images/random/${NUM_IMAGES_PER_BREED}`
+            )
+                .then(res => res.json())
+                .then(data => {
+                    get(breedCache)[breed] = data.message;
+                });
+        } catch (e) {
+            console.error("There was an error fetching breed:", breed);
+            isFailToastOpen.set(breed);
+            setTimeout(() => {
+                isFailToastOpen.set(null);
+            }, 5000)
+            savedDoglist.update(list => list.filter(d => d !== breed));
+        }
     }
 };
 

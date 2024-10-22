@@ -3,8 +3,8 @@
     import Failure from "./lib/components/Failure.svelte";
     import Gallery from "./lib/components/Gallery.svelte";
     import Sidebar from "./lib/components/Sidebar.svelte";
-    import { cacheBreed, refreshGallery } from "./lib/scripts/helpers";
-    import { doglist, isFailure, savedDoglist } from "./lib/scripts/state";
+    import { cacheBreed, formatBreedName, refreshGallery } from "./lib/scripts/helpers";
+    import { doglist, isFailToastOpen, isFailure, savedDoglist } from "./lib/scripts/state";
 
     type RawDogList = {
         message: {
@@ -56,6 +56,16 @@
         doglist.set(newDogList);
     });
 </script>
+
+{#if $isFailToastOpen !== null}
+    <div class="toast z-50">
+        <div class="alert alert-error">
+        <span>
+            Breed {formatBreedName($isFailToastOpen)} failed to load :(
+        </span>
+        </div>
+    </div>
+{/if}
 
 {#if $isFailure}
     <Failure />
